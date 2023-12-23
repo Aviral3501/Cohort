@@ -9,7 +9,7 @@
     height : auto;
 }
 .reduce-size-logo{
-    width:14%;
+    width:15%;
     height:auto;
 }
 .text-center{
@@ -22,4 +22,17 @@
     width: 150px;
     height: 50px;
 
+}
+.navbar{
+    display:flex;
+    margin-left:  100px;
+    margin-right: 100px;
+    margin-top: 20px;
+    justify-content: flex-start;
+
+}
+.button-space{
+    margin:1px ;
+    padding-left:10px;
+    padding-right:10px;
 }
