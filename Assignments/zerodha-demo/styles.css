@@ -17,3 +17,10 @@
     justify-content: center;
     text-align: center;
 }
+.signupButton{
+    background-color: #0963e2be;
+    width: 100px;
+    height: 45px;
+    border-radius: 2ch;
+    cursor:pointer;
+}
