@@ -19,8 +19,13 @@
 }
 .signupButton{
     background-color: #0963e2be;
-    width: 100px;
+    width: 140px;
     height: 45px;
-    border-radius: 2ch;
+    border-radius:3px;
     cursor:pointer;
+    color: white;
+    border-color: #0963e2be;
+}
+.hoverButton:hover{
+    background-color: #1d1f22be;
 }
