@@ -6,7 +6,12 @@ const { resolve } = require('path');
 function readFile(){
     return new Promise(function(resolve) {
         fs.readFile("a.txt","utf-8",function(err,data){
-            resolve(data);
+            if(err){
+                console.log("An error occured while reading the file !");
+            }else{
+                resolve(data);
+                console.log("---the file contents are read ---")
+            }
         })
 
     });
@@ -14,8 +19,6 @@ function readFile(){
 //callback function
 function onDone(data){
     console.log(data);
-    console.log("----->file has been read ");
-    
 }
 
 //calling the function

@@ -1,19 +1,17 @@
 
-const fs = require('fs');
-
-// my own asynchronous function
-function kiratsReadFile() {
-  return new Promise(function(resolve) {
-    fs.readFile("a.txt", "utf-8", function(err, data) {
-      resolve(data);
-    });
-  })
+function kiratsAsyncFunction() {
+  let p = new Promise(function(resolve) {
+    // do some async logic here
+    resolve("-----hi there!-----")
+  });
+  return p;
 }
 
-// callback function to call
-function onDone(data) {
-  console.log(data);
-  console.log("----->file has been read ");
+async function main() {
+  const value = await kiratsAsyncFunction();
+  console.log(value);
 }
 
-kiratsReadFile().then(onDone);
+main();
+// ther ewas no need to do main().then(function(){...});
+//asyn await  is just another method (bettwer method of writing async functions)
