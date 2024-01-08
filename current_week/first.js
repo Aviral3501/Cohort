@@ -12,7 +12,8 @@ function kiratsReadFile() {
 
 // callback function to call
 function onDone(data) {
-  console.log(data)
+  console.log(data);
+  console.log("----->file has been read ");
 }
 
 kiratsReadFile().then(onDone);
