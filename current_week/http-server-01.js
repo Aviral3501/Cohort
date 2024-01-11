@@ -22,3 +22,9 @@ app.post('/post', (req, res) => {
         Lname:"Singh",
     })
 });
+
+app.post("/getHeaders",(req,res)=>{
+    console.log(req.headers);
+    console.log("----"+req.headers.authorization+"----");
+    
+})
