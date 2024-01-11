@@ -1,30 +1,24 @@
-// to create an http swerver using express --> first create a js file  , then in the same folder run "npm init -y" to create a json file
-//now to create the http server write this code -->
-//run npm install express "as it does not locally exists (unlike fs.readFile())"
-
-const express = require("express");
+// npm i express 
+const express = require('express');
 const app = express();
-let port =3000;
+const port = 3000;
 
-//app.listen() creates a web server that listens for the incoming requests
-app.listen(port, ()=>{
-    console.log(`app is listening on the port ${port}`);
-});       
-
-//what would we respond with when we have a get request at a route 
-app.get('/',(req,res)=>{
-    // req -> request(may contain ->headers , body , query parameters etc )
-    res.send('Hello World');
+//server will work only when app.listen is mentianed and only then it will listen for incoming requests at different routes 
+app.listen(port,()=>{
+    console.log(`Server is running on ${port}`);
 });
 
-app.get('/home',(req,res)=>{
-    res.send('this is the home page');
+app.get("/",(req,res)=>{
+    res.send("Hello World!");
 });
-
-app.get("/json" , (req,res)=>{
-        //sending a json object 
-    res.json({
-        name:"John Doe",
-        age:25
+app.post('/post', (req, res) => {
+    // Process the data here
+    //res.send("<b>Post request recieved</b>");
+    //or
+    res.send({
+        status: "success",
+        message:"Post request received",
+        Fname:"Aviral",
+        Lname:"Singh",
     })
 });
