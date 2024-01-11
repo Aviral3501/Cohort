@@ -13,9 +13,18 @@ app.listen(port, ()=>{
 
 //what would we respond with when we have a get request at a route 
 app.get('/',(req,res)=>{
+    // req -> request(may contain ->headers , body , query parameters etc )
     res.send('Hello World');
 });
 
 app.get('/home',(req,res)=>{
     res.send('this is the home page');
+});
+
+app.get("/json" , (req,res)=>{
+        //sending a json object 
+    res.json({
+        name:"John Doe",
+        age:25
+    })
 });
