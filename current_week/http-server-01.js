@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const app = express();
 const port =3000;
 
@@ -16,12 +16,9 @@ app.get("/home",(req,res)=>{
     res.send("Home page");
 })
 app.post('/post', (req, res) => {
-    // Process the data here
-    //res.send("<b>Post request recieved</b>");
-    //or
-    const message = req.body.message ;
+    let message = req.body.name;
+    console.log(message);
     res.json({
-        ouptut : "Zoro",
-        sanji : "number 7 "
-    })
+        "output":"2+2 =4"
+    }) 
 });
