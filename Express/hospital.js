@@ -67,5 +67,8 @@ app.put("/",(req,res)=>{
     })
 });
 app.delete("/",(req,res)=>{
-
+        users[0].kidneys.pop();
+        res.json({
+            msg : "Deleted a Kidney"
+        })
 });
