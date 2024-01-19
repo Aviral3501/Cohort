@@ -66,9 +66,19 @@ app.put("/",(req,res)=>{
         msg:"All kidney's are now Healthy!"
     })
 });
+
+//remove all the unehalthy kidneys 
 app.delete("/",(req,res)=>{
-        users[0].kidneys.pop();
+        let healthyKidneys = [];
+        for(let i=0 ; i < users[0].kidneys.length;i++){
+            if (users[0].kidneys[i].healthy ===true){
+                healthyKidneys.push({
+                    healthy : true
+                });
+            }
+        }
+        users[0].kidneys = healthyKidneys;
         res.json({
-            msg : "Deleted a Kidney"
+            msg : healthyKidneys
         })
 });
