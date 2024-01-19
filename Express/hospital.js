@@ -27,7 +27,7 @@ app.listen(port,()=>{
     console.log(`App is listening on port ${port}`);
 })
 
-app.get("/noOfKidneys" , (req,res)=>{
+app.get("/" , (req,res)=>{
     let johnKidneys = users[0].kidneys;
     let numOfKidneys = johnKidneys.length;
     let numOfHealthyKidneys = 0; 
@@ -44,14 +44,28 @@ app.get("/noOfKidneys" , (req,res)=>{
     })
 });
 
-
-app.post("addKidney",(req,res)=>{
+app.use(express.json()); //to req.body was undefined , hence to counter it we use thus line
+app.post("/",(req,res)=>{
+    //put the data into the body , below is how we acces the data in the body
+    const isHealthy = req.body.isHealthy;
+    users[0].kidneys.push({
+            healthy : isHealthy
+        })
+    res.json({
+        msg : "Done"
+    })
 }
 
 );
-app.put("/replaceKidney",(req,res)=>{
-
+app.put("/",(req,res)=>{
+    for( let i=0;i<users[0].kidneys.length;i++){
+        users[0].kidneys[i].healthy = true;
+        //reset everything to true
+    }
+    res.json({
+        msg:"All kidney's are now Healthy!"
+    })
 });
-app.delete("/removeKidney",(req,res)=>{
+app.delete("/",(req,res)=>{
 
 });
