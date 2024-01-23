@@ -1,72 +1,76 @@
-const express = require('express');
+const express = require("express");
 const jwt = require("jsonwebtoken");
-const jwtPassword = 123456;
+const jwtPassword = "123456";
+
+
 const app = express();
-const port =3000;
+app.use(express.json());
 
-app.use(express.json());//middleware
-app.listen(port , (req,res)=>{
-    console.log(`App is listening on port number ${port}`);
-})
 
-const All_Users = [
-    {
-    username : "aviralsingh3501@gmail.com",
-    password:"123",
-    name:"aviral singh"
-    },{
-        username: "admin@test.com",
-        password: "admin",
-        name:"admin"
-    },{
-        username: "user@test.com",
-        password: "user",
-        name:"User"
-    },
+const ALL_USERS = [
+{
+    username: "harkirat@gmail.com",
+    password: "123",
+    name: "harkirat singh",
+},
+{
+    username: "raman@gmail.com",
+    password: "123321",
+    name: "Raman singh",
+},
+{
+    username: "priya@gmail.com",
+    password: "123321",
+    name: "Priya kumari",
+},
 ];
 
 
-function userExists(userame , password){
-    //write logic to return true or false if this user exists
-    //in All_Users array
-    let userExists =false;
+function userExists(username, password) {
+  // write logic to return true or false if this user exists
+  // in ALL_USERS array
+let userExists =false;
 
-    for(let i=0;i<All_Users.length;i++){
-        if(All_Users[i].username == userame && All_Users[i].password == password){
-            userExists = true;;
-        }
-    }
-    return userExists;
+for(let i=0;i<ALL_USERS.length;i++){
+if(ALL_USERS[i].username == username && ALL_USERS[i].password == password){
+userExists = true;;
+}
+}
+return userExists;
 
 }
 
 
-app.post("/signin",(req,res)=>{
-    const username = req.body.username;
-    const password = req.body.password;
+app.post("/signin", function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
 
-    if(!userExists(username,password)){
-        return res.status(403).json({
-            msg:"User does not exists in our memory db"
-        })
-    }
 
-    var token = jwt.sign({username:username},"shhhhh");
-    return res.json({
-        token,
+  if (!userExists(username, password)) {
+    return res.status(403).json({
+      msg: "User doesnt exist in our in memory db",
+    });
+  }
+
+
+  var token = jwt.sign({ username: username }, "shhhhh");
+  return res.json({
+    token,
+  });
+});
+
+
+app.get("/users", function (req, res) {
+const token = req.headers.authorization;
+    const decoded = jwt.verify(token, jwtPassword);
+    const username = decoded.username;
+    res.json({
+        users:ALL_USERS,
     })
 });
 
-app.get('/users',(req, res) => {
-    const token = req.headers.authorization;
-    try{
-        const decoded = jwt.verify(token, jwtPassword);
-        const username = decoded.username;
-        //return a list of users other than this username 
-    }catch(err){
-        return res.status(403).json({
-            msg:"Invalid Token",
-        })
-    } 
-});
+
+app.listen(3000,(req,res)=>{
+    console.log("appp is litening on port 3000");
+})
 
