@@ -16,7 +16,11 @@ function App() {
   return (
     <>
         <div>
-          <Todo title="Aviral" description="gym ja" completed="done"></Todo>
+          <Todo title="Aviral1" description="gym ja" completed="done"></Todo>
+          <Todo title="Aviral2" description="gym ja" completed="done"></Todo>
+          {/* how to pass whats in the useState */}
+          <Todo title={todos[0].title} description={todos[0].description}></Todo>
+          <Todo title={todos[1].title} description={todos[1].description}></Todo>
         </div>
     </>
   )
