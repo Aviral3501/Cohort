@@ -10,17 +10,32 @@ function App() {
   title: "Study React.js" ,
   description : "Watch tutorial till 12 pm" ,
   completed:false
+},{
+    title: "Study React.js" ,
+    description : "Watch tutorial till 12 pm" ,
+    completed:false
+  
 }]);
 
+function addTodo(){
+  setTodos([...todos,{
+    title:"new todo",
+    description:"new description"
+  }])
+
+  // ... means that it returns old set of data along with new data 
+  // i.e. [1,2,3,] + 4 will give [1,2,3,4,] and so on
+}
 
   return (
     <>
         <div>
-          <Todo title="Aviral1" description="gym ja" completed="done"></Todo>
-          <Todo title="Aviral2" description="gym ja" completed="done"></Todo>
-          {/* how to pass whats in the useState */}
-          <Todo title={todos[0].title} description={todos[0].description}></Todo>
-          <Todo title={todos[1].title} description={todos[1].description}></Todo>
+          <button onClick={addTodo}>Add a  todo</button>
+          {
+            todos.map(function(todo){
+              return <Todo title={todo.title} description={todo.description}></Todo>
+            })
+          }
         </div>
     </>
   )
