@@ -6,6 +6,7 @@ let state = {
 //state equivalent
 function onButtonPress(){
     state.count++;
+    console.log(state.count);
     buttonComponentRender();
 }
 
