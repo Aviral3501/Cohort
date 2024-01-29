@@ -2,25 +2,40 @@ import { useState } from 'react'
 
 function App() {
 
-  const [count , setCount] = useState(0);
+  const [todos , setTodos] = useState([{
+    title: "GO to gym",
+  description:"GO to gym from 7-9",
+  completed:true
+} , {
+  title: "Study React.js" ,
+  description : "Watch tutorial till 12 pm" ,
+  completed:false
+}]);
+
+
   return (
     <>
         <div>
-          <CustomButton count={count} setCount={setCount}></CustomButton>
+          <Todo title="Aviral" description="gym ja" completed="done"></Todo>
         </div>
     </>
   )
 }
 
-//component button
-function CustomButton(props){
+//component todo item 
+///todo app {
+//   title
+//   description
+//   completed
+// }
 
-    function onClickHandler(){
-      props.setCount(props.count+1);
-      // console.log(props.count);
-    }
 
-  return <button onClick={onClickHandler}>Count is {props.count}</button>
+function Todo(props){
+  return <div>
+        <h1>{props.title}</h1>
+        <h1>{props.description}</h1>
+        <h1>{props.completed}</h1>
+  </div>
 }
 
 
