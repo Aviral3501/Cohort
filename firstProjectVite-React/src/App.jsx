@@ -24,7 +24,7 @@ function addTodo(){
   }])
 
   // ... means that it returns old set of data along with new data 
-  // i.e. [1,2,3,] + 4 will give [1,2,3,4,] and so on
+  // i.e. [1,2,3] , 4 will give [1,2,3,4] and so on
 }
 
   return (
