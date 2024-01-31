@@ -2,10 +2,12 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { createTodo, updateTodo } = require("./types");
 const { todo } = require("./bd");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
 app.use(express.json()); //middleware 
+app.use(cors());//allows our frontend to communicate with backend at a  specific port , however here we can hit backend from anywhere
 
 app.listen(port , ()=>{
     console.log(`Server is running on ${port}`);
@@ -15,7 +17,7 @@ app.get("/todos",async (req,res)=>{
      const todos =await todo.find();
      //as there is nod condition , everuthing in the db will be returned
      res.json({
-        todos
+        todos:todos
      })
 });
 
@@ -26,7 +28,7 @@ app.post("/todo",async function(req,res){
     //making sure the data matches our schema
     if(!parsePayload.success){
         res.status(411).json({
-            msg:"invalid inputs , only string is accepted"
+            msg:"invalid inputs"
         })
         return;
     }
@@ -54,13 +56,19 @@ app.put("/completed",async (req,res)=>{
         return;
     }
     //update the database with new information
-    await todo.update({
-        _id:updatePayload.id
-    },{
+    todoId = req.body.id;
+    try {
+    await todo.findByIdAndUpdate(todoId ,{
         completed:true
-    })
-
-    res.json({
-        msg:"marked as completed"
-    })
-})  
+    });
+    if(!updateTodo){
+        return res.status(404).json({
+            error: 'Could not find Todo.'
+        })
+    }
+    res.json({ msg:"Marked as completed"});
+}catch(error){
+    console.error(error);
+    res.status(500).json({error:"Internal Server error"});
+}
+})   
