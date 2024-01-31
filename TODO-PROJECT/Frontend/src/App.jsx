@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { CreateTodo } from './Components/CreateTodo'
+import { Todos } from './Components/Todos';
 
 function App() {
    const [todos,setTodos]= useState([]);
@@ -9,7 +10,7 @@ function App() {
     <>
     <div>
       <CreateTodo></CreateTodo>
-      <Todos todos={""}></Todos>
+      <Todos todos={todos}></Todos>
     </div>
      
     </>

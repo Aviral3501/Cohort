@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { createTodo, updateTodo } = require("./types");
-const { todo } = require("./bd");
+const { todo } = require("./db");
 const cors = require("cors");
 const app = express();
 const port = 3000;
