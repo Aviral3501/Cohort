@@ -9,8 +9,9 @@ function App(){
   ])
 
   function addTodo(){
-      useState([...todos , {
-        id:count+1,
+    count = count+1;
+      setTodos([...todos , {
+        id:count,
         title:Math.random(),
         description:Math.random()
       }])
@@ -33,7 +34,7 @@ function App(){
 function Todo({title , description}){
   return (
     <div>
-        <h3>Title is :{title}</h3><br/>
+        <h3>Title is :{title}</h3>
         <h4>Desc is :{description}</h4>
     </div>
   )
