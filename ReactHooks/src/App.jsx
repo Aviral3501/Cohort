@@ -23,7 +23,7 @@ function App(){
     <>
     <button onClick={addTodo}>Add todo</button>
     {todos.map((todo) =>{
-      return <Todo title={todo.title} description={todo.description}></Todo>
+      return <Todo key={todo.id} itle={todo.title} description={todo.description}></Todo>
     })}
     </>
   )
