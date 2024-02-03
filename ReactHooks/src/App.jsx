@@ -1,45 +1,39 @@
 import { useState } from "react";
-let count =3;
+import { useEffect } from "react";
 
 function App(){
-  const [todos , setTodos] = useState([
-    {id:1, title:"first" , description:"desc1"},
-    {id:2, title:"second" , description:"desc2"},
-    {id:3, title:"third" , description:"desc3"}
-  ])
 
-  function addTodo(){
-    count = count+1;
-      setTodos([...todos , {
-        id:count,
-        title:Math.random(),
-        description:Math.random()
-      }])
-  }
+const [todos , setTodos] = useState([]);
 
-  
+
+//empty array means useEfeect will be called  only once when the component is mounted
+  useEffect(()=>{
+    setInterval(()=>{
+
+      fetch("https://sum-server.100xdevs.com/todos")
+      .then(async function(res){
+        const json = await res.json();
+        setTodos(json.todos);
+      });
+    },5000)
+  },[]);
+
 
   return(
     <>
-    <button onClick={addTodo}>Add todo</button>
-    {todos.map((todo) =>{
-      return <Todo key={todo.id} itle={todo.title} description={todo.description}></Todo>
-    })}
+    {todos.map(todo => <Todo key={todo.id} id={todo.id} title={todo.title} description={todo.description}/>)}
     </>
   )
+
+
+
 }
 
-
-// a todo component in which we pass title and desc and it return them in a format
-function Todo({title , description}){
-  return (
-    <div>
-        <h3>Title is :{title}</h3>
-        <h4>Desc is :{description}</h4>
-    </div>
-  )
+function Todo({id , title , description}){
+  <>
+  <h2>{title}</h2>
+  <h4>{description}</h4>
+  </>
 }
-
-
 
 export default App;
