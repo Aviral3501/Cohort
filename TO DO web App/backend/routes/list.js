@@ -82,7 +82,7 @@ router.delete("/deleteTask/:id" , async(req,res)=>{
 
 router.get("/getTasks/:id" , async (req,res)=>{
     try {
-        const list = List.find({user:req.params.id});
+        const list = await List.find({user:req.params.id});
         res.status(200).json(await list);
     } catch (error) {
         console.log("Error in getting the tasks");
