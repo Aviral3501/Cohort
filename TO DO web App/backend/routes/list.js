@@ -51,9 +51,7 @@ router.put("/updateTask/:id" , async (req,res)=>{
     }catch(error){
         console.error("Error during updating task", error);
         res.status(500).json("msg:Internal server error");
-
     }
-    
 })
 
 module.exports = router;
