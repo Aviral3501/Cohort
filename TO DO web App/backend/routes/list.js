@@ -84,7 +84,11 @@ router.get("/getTasks/:id" , async (req,res)=>{
     try {
         //find the list and print tasks in the "LIFO" format , newest task is printed first
         const list = await List.find({user:req.params.id}).sort({createdAt : -1});
+        if(list.length ==0){
+            return res.status(200).json({message : 'No Todos are available for this user.'});
+        }else{
         res.status(200).json(await list);
+        }
     } catch (error) {
         console.log("Error in getting the tasks");
         res.status(500).json({message:"Internal server error"});
