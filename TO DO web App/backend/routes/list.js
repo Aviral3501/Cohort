@@ -78,4 +78,15 @@ router.delete("/deleteTask/:id" , async(req,res)=>{
     }
 })
 
+//read all the todos
+
+router.get("/getTasks/:id" , async (req,res)=>{
+    try {
+        const list = List.find({user:req.params.id});
+        res.status(200).json(await list);
+    } catch (error) {
+        console.log("Error in getting the tasks");
+        res.status(500).json({message:"Internal server error"});
+    }
+})
 module.exports = router;
