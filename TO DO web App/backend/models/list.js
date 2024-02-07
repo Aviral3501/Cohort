@@ -9,6 +9,6 @@ const listSchema = new mongoose.Schema({
         ref:"User",
         }]
     //Add any other fileds you need 
-});
+},{timestamps:true});
 
 module.exports = mongoose.model("List",listSchema);
