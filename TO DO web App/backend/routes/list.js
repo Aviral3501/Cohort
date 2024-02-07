@@ -54,4 +54,25 @@ router.put("/updateTask/:id" , async (req,res)=>{
     }
 })
 
+//delete task
+
+router.delete("/deleteTask/:id" , async(req,res)=>{
+    try {
+        const {email}= req.body;
+        //if user exists
+        const existingUser = await User.findOne({email});
+        if(existingUser){
+            await List.findByIdAndDelete(req.params.id);
+            return res.status(200).json({message : "The Task has been deleted"});
+            } else {
+                //respond with user not found
+                return res.status(400).json('User Not Found');
+        }
+        
+    } catch (error) {
+        console.log("Error during deleting task");
+        res.status(500).json({message:"Internal server error"});
+    }
+})
+
 module.exports = router;
