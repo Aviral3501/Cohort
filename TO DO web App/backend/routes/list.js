@@ -82,7 +82,8 @@ router.delete("/deleteTask/:id" , async(req,res)=>{
 
 router.get("/getTasks/:id" , async (req,res)=>{
     try {
-        const list = await List.find({user:req.params.id});
+        //find the list and print tasks in the "LIFO" format , newest task is printed first
+        const list = await List.find({user:req.params.id}).sort({createdAt : -1});
         res.status(200).json(await list);
     } catch (error) {
         console.log("Error in getting the tasks");
