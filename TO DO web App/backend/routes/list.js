@@ -60,7 +60,10 @@ router.delete("/deleteTask/:id" , async(req,res)=>{
     try {
         const {email}= req.body;
         //if user exists
-        const existingUser = await User.findOne({email});
+        //it not only deltes a task but also updates the listArray in in User  model
+        const existingUser = await User.findOneAndUpdate(
+            {email},
+            {$pull: {list : req.params.id}});
         if(existingUser){
             await List.findByIdAndDelete(req.params.id);
             return res.status(200).json({message : "The Task has been deleted"});
