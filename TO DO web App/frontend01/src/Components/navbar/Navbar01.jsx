@@ -27,13 +27,13 @@ const Navbar = () => {
         </li>
 
         <li className="nav-item mx-2">
-          <Link className="nav-link active" aria-current="page" to="/">Todo</Link>
+          <Link className="nav-link active" aria-current="page" to="/todo">Todo</Link>
         </li>
         <li className="nav-item mx-2">
-          <Link className="nav-link active btn-nav" aria-current="page" to="/">SignUp</Link>
+          <Link className="nav-link active btn-nav" aria-current="page" to="/signup">SignUp</Link>
         </li>
         <li className="nav-item mx-2">
-          <Link className="nav-link active btn-nav" aria-current="page" to="/">SignIn</Link>
+          <Link className="nav-link active btn-nav" aria-current="page" to="/signin">SignIn</Link>
         </li>
         <li className="nav-item mx-2">
           <Link className="nav-link active btn-nav" aria-current="page" to="/">LogOut</Link>
