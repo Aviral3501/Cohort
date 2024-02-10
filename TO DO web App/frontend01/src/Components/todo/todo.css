@@ -1,0 +1,25 @@
+.todo{
+    min-height: 100vh;
+    max-height: auto;
+    width:100%;
+}
+
+.todo-inputs{
+    border:none;
+    outline: none;
+}
+.todo-inputs-div{
+    /* border:1px solid black; */
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.35) 0px 5px 10px;
+}
+
+#textarea{
+    display:none;
+}
+
+.todo-card{
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.35) 0px 5px 10px;
+}
