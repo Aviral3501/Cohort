@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./todo.css";
 import TodoCards from './TodoCards';
 
+
 const Todo = () => {
 
     const [ Inputs , setInputs] = useState({
@@ -35,31 +36,39 @@ const Todo = () => {
         
     }
 
+    const del = (id) => {
+        //only deleted a specific  card based on its id 
+        console.log(id);
+        Array.splice(id , "1");
+        //update the array
+        setArray([...Array]) ;
+
+    }
 
   return (
     <div className="todo">
         <div className="todo-main container d-flex justify-content-center align-items-center flex-column" >
             <div className='d-flex flex-column todo-inputs-div w-50 p-1 '>
                 <input 
-                className="my-2 p-2 todo-inputs"
-                 type="text" placeholder='TITLE
-                 ' name="title" onClick={show}
-                 value={Inputs.title}
-                  onChange={change} >
+                        className="my-2 p-2 todo-inputs"
+                        type="text" placeholder='TITLE'
+                        name="title" onClick={show}
+                        value={Inputs.title}
+                        onChange={change} >
 
-                  </input>
+                </input>
 
 
                 <textarea 
-                id="textarea" 
-                className="my-2 p-2 todo-inputs"
-                 type="text" 
-                 placeholder='DESCRIPTION'
-                  name="description"
-                  value={Inputs.description}
-                  onChange={change}>
+                        id="textarea" 
+                        className="my-2 p-2 todo-inputs"
+                        type="text" 
+                        placeholder='DESCRIPTION'
+                        name="description"
+                        value={Inputs.description}
+                        onChange={change}>
 
-                  </textarea>
+                </textarea>
                
             </div>
             <div className='w-50 my-3 d-flex justify-content-end'>
@@ -72,11 +81,11 @@ const Todo = () => {
             <div className="container-fluid">
                 <div className='row '>
                     {Array && Array.map((item , index) =>(
-                        <>
-                        <div className='col-lg-3  mx-5 my-2'>
-                            <TodoCards/>
+                        
+                        <div className='col-lg-3  mx-5 my-2' key={index}>
+                            <TodoCards title={item.title} description={item.description} id={index} delId={del}  />
                         </div> 
-                        </>
+                        
                     ))}
                 </div>
                
