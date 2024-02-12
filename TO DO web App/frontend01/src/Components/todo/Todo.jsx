@@ -3,6 +3,7 @@ import "./todo.css";
 import TodoCards from './TodoCards';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Update from './Update';
 
 
 const Todo = () => {
@@ -33,8 +34,14 @@ const Todo = () => {
 
     //rerendering on submitting the todo -> empty the inputs for the next input and add the current element to the array
     const submit = ()=>{
+        if(Inputs.title === "" || Inputs.description===""){
+            toast.error("Title or Description should not be empty");
+        }else{
         setArray([...Array , Inputs]);
         setInputs({title:"", description:""});
+        toast.success("Task is submitted");
+        toast.error("Task is not saved, Please sign in");
+        }
         
     }
 
@@ -44,11 +51,16 @@ const Todo = () => {
         Array.splice(id , "1");
         //update the array
         setArray([...Array]) ;
-
+        toast.success("Task is deleted");
     }
 
+
   return (
+    <>
+    <br/>
     <div className="todo">
+          <ToastContainer></ToastContainer>
+      
         <div className="todo-main container d-flex justify-content-center align-items-center flex-column" >
             <div className='d-flex flex-column todo-inputs-div w-50 p-1 '>
                 <input 
@@ -93,8 +105,16 @@ const Todo = () => {
                
             </div>
         </div>
+      
 
     </div>
+    <div className="todo-update" id="todo-update">
+        <div className='container'>
+        <Update/>
+        </div>
+        
+    </div>
+    </>
   )
 }
 

@@ -41,7 +41,9 @@ const TodoCards = ({ title, description, id  , delId}) => {
 
             <div className="d-flex justify-content-between">
 
-                <div onClick={() => {console.log(id)}}>
+                <div onClick={()=>{
+                   document.getElementById("todo-update").setAttribute('style' , "display:block");
+                }}>
                     < MdOutlineRefresh className="card-icon"/>
 
                 </div>
