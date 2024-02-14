@@ -10,6 +10,7 @@ import Todo from './Components/todo/Todo';
 
 const App = () => {
   return (
+    <>
     <div>
       <Router>
         <Navbar />
@@ -24,8 +25,12 @@ const App = () => {
           </Routes>
       </Router>
      
-      <Footer></Footer>  
+       
     </div>
+    <div>
+    <Footer></Footer> 
+    </div>
+    </>
   )
 }
 

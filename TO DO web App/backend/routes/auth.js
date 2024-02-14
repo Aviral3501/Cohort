@@ -16,10 +16,10 @@ router.post("/register" , async(req,res) =>{
         const hashpassword = bcrypt.hashSync(password ,10);
         const user  = new User({email,username,password:hashpassword});
         await  user.save();
-        res.status(200).json(user);
+        res.status(200).json({message:"User signed up succcesfully"});
        
     }catch(error){
-        res.status(400).json({message:"User Already Exists"});
+        res.status(200).json({message:"User Already Exists"});
     }
 })
 

@@ -54,6 +54,10 @@ const Todo = () => {
         toast.success("Task is deleted");
     }
 
+    const dis = (value) =>{
+        console.log(value);
+        document.getElementById("todo-update").style.display = value;
+    }
 
   return (
     <>
@@ -97,7 +101,7 @@ const Todo = () => {
                     {Array && Array.map((item , index) =>(
                         
                         <div className='col-lg-3  mx-5 my-2' key={index}>
-                            <TodoCards title={item.title} description={item.description} id={index} delId={del}  />
+                            <TodoCards title={item.title} description={item.description} id={index} delId={del} display={dis} />
                         </div> 
                         
                     ))}
@@ -110,7 +114,7 @@ const Todo = () => {
     </div>
     <div className="todo-update" id="todo-update">
         <div className='container'>
-        <Update/>
+        <Update display={dis}/>
         </div>
         
     </div>
