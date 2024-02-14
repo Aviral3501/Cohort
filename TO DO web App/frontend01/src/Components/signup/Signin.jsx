@@ -62,7 +62,7 @@ const Signin = () => {
               
               <div className='d-flex flex-column w-75 p-5 input-data-small'>
               <input className='p-2 my-3 input-signup' type="email" name="email" placeholder='Enter your email' value={Inputs.email} onChange={change}></input>
-              {/* <input className='p-2 my-3 input-signup' type="username" name="username" placeholder='Enter you username'></input> */}
+              
               <input className='p-2 my-3 input-signup' type="password" name="password" placeholder='Enter password' value={Inputs.password} onChange={change}></input>
               <button className='btn-signup p-2' onClick={submit}>SignIn</button>
               </div>

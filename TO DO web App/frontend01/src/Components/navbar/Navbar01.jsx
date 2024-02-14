@@ -3,9 +3,20 @@ import "./Navbar.css"
 import { GiWhiteBook } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { authActions } from "../../store";
+import { useDispatch } from 'react-redux';
+
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn)
+  const dispatch = useDispatch();
+  const logout = ()=>{
+    //clear the sotrage
+    sessionStorage.clear("id");
+    dispatch(authActions.logout());
+  }
+
+
   // console.log(isLoggedIn);
 
 
@@ -45,8 +56,8 @@ const Navbar = () => {
               }
               {isLoggedIn &&
                 <>
-                  <li className="nav-item mx-2">
-                    <Link className="nav-link active btn-nav" aria-current="page" to="/">LogOut</Link>
+                  <li className="nav-item mx-2 " onClick={logout}>
+                    <Link className="nav-link active btn-nav" aria-current="page" to="/" >LogOut</Link>
                   </li>
                 </>
               }
