@@ -31,12 +31,12 @@ router.post("/signin" , async(req,res)=>{
         //check if user already exists or not
         const user = await User.findOne({email:req.body.email});
         if(!user){
-            return res.status(400).json({message:"Please Sign Up first "});
+            return res.status(200).json({message:"Please Sign Up first "});
         }
 
         const isPasswordCorrect = bcrypt.compareSync(req.body.password , user.password);
          if(!isPasswordCorrect){
-           return  res.status(400).json({message:"Invalid email or password"});
+           return  res.status(200).json({message:"Invalid email or password"});
          } 
         //except password , resturn  json data of user to the client side 
          const {password , ...userData} = user._doc; 
@@ -44,7 +44,7 @@ router.post("/signin" , async(req,res)=>{
         
     }catch(error){
         console.error("Error during signin:",error);
-        return res.status(400).json({message:"Error during signin"})
+        return res.status(200).json({message:"Error during signin"})
     }
 })
 

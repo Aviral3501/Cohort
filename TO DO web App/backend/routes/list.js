@@ -13,7 +13,7 @@ router.post("/addTask" , async (req,res)=>{
     const existingUser = await User.findOne({email});
 
     if(!existingUser){
-        return res.status(400).json({message:"User not found"});
+        return res.status(200).json({message:"User not found"});
 
     }
         //create a new list
@@ -29,7 +29,7 @@ router.post("/addTask" , async (req,res)=>{
 
   }catch(error){
     console.error("Error during adding task", error);
-    res.status(500).json("msg:Internal server error");
+    res.status(200).json("msg:Internal server error");
   }
 });
 
@@ -46,11 +46,11 @@ router.put("/updateTask/:id" , async (req,res)=>{
         console.log("task has been updated");
     }else{
         //respond with user not found
-        res.status(400).json({message:'User not found'});
+        res.status(200).json({message:'User not found'});
     }
     }catch(error){
         console.error("Error during updating task", error);
-        res.status(500).json("msg:Internal server error");
+        res.status(200).json("msg:Internal server error");
     }
 })
 
@@ -69,12 +69,12 @@ router.delete("/deleteTask/:id" , async(req,res)=>{
             return res.status(200).json({message : "The Task has been deleted"});
             } else {
                 //respond with user not found
-                return res.status(400).json('User Not Found');
+                return res.status(200).json('User Not Found');
         }
         
     } catch (error) {
         console.log("Error during deleting task");
-        res.status(500).json({message:"Internal server error"});
+        res.status(200).json({message:"Internal server error"});
     }
 })
 
@@ -91,7 +91,7 @@ router.get("/getTasks/:id" , async (req,res)=>{
         }
     } catch (error) {
         console.log("Error in getting the tasks");
-        res.status(500).json({message:"Internal server error"});
+        res.status(200).json({message:"Internal server error"});
     }
 })
 module.exports = router;

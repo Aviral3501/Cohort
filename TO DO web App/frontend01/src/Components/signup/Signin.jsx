@@ -1,9 +1,45 @@
 import React from 'react'
 import "./signup.css";
 import HeadingComp from './HeadingComp';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
+const Signin = () => {
+  
+  const history = useNavigate();
+  const [Inputs, setInputs] = useState({ email: "", password: "" });
 
-const Signin = ({first,second}) => {
+  const change = (e) => {
+    const { name, value } = e.target;
+    setInputs({ ...Inputs, [name]: value });
+  }
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+
+      await axios.post("http://localhost:3000/api/v1/signin", Inputs).then((response) => {
+
+      //if user exists
+      if(response.data.message==="Please Sign Up first "){
+        alert("Sign up first");
+        history("/signup");
+      }else if(response.data.message ==="Invalid email or password"){
+        alert("Wrong email or password")
+      }else{
+        alert("signed in");
+        console.log(response.data.userData); 
+      }
+        
+      });
+    } catch (error) {
+      console.error("Error during signin , Internal Server error" + error);
+
+    }
+
+  }
+
   return (
     <div className='signup'>
     <div className="container">
@@ -14,12 +50,12 @@ const Signin = ({first,second}) => {
             <div className="col-lg-8 column d-flex justify-content-center align-items-center">
               
               <div className='d-flex flex-column w-75 p-5 input-data-small'>
-              <input className='p-2 my-3 input-signup' type="email" name="email" placeholder='Enter your email'></input>
-              <input className='p-2 my-3 input-signup' type="username" name="username" placeholder='Enter you username'></input>
-              <input className='p-2 my-3 input-signup' type="password" name="password" placeholder='Enter password'></input>
-              <button className='btn-signup p-2'>SignUp</button>
+              <input className='p-2 my-3 input-signup' type="email" name="email" placeholder='Enter your email' value={Inputs.email} onChange={change}></input>
+              {/* <input className='p-2 my-3 input-signup' type="username" name="username" placeholder='Enter you username'></input> */}
+              <input className='p-2 my-3 input-signup' type="password" name="password" placeholder='Enter password' value={Inputs.password} onChange={change}></input>
+              <button className='btn-signup p-2' onClick={submit}>SignIn</button>
               </div>
-             
+              
               
              
               
