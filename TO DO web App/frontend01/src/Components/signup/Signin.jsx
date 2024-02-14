@@ -4,8 +4,13 @@ import HeadingComp from './HeadingComp';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { authActions } from "../../store";
+import { useDispatch } from 'react-redux';
+
 
 const Signin = () => {
+
+  const dispatch = useDispatch();
   
   const history = useNavigate();
   const [Inputs, setInputs] = useState({ email: "", password: "" });
@@ -28,8 +33,14 @@ const Signin = () => {
       }else if(response.data.message ==="Invalid email or password"){
         alert("Wrong email or password")
       }else{
-        alert("signed in");
-        console.log(response.data.userData); 
+        console.log("signed in");
+        // console.log(response.data.userData); 
+        // console.log(response.data.userData._id);
+        // storing the _id in session storage
+        sessionStorage.setItem("id", response.data.userData._id);
+        dispatch(authActions.login());
+        
+        history("/todo");
       }
         
       });
