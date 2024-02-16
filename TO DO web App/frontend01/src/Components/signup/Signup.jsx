@@ -24,13 +24,14 @@ const Signup = () => {
           setInputs({ email: "", username: "", password: "" });
           history("/signin");
         } else {
-          alert(response.data.message);
+          alert(response.data.message);//sign up successful
           setInputs({ email: "", username: "", password: "" });
           history("/signin");
         }
       })
     } catch (error) {
       console.error("Error during registration" + error);
+      console.log("Internal Server Error , Sorry for inconvenience");
 
     }
 
