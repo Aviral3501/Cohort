@@ -19,8 +19,10 @@ const Signup = () => {
     try {
 
       await axios.post("http://localhost:3000/api/v1/register", Inputs).then((response) => {
-        if (response.data.message === "User Alredy Exists") {
-          alert(response.data.message);
+        if (response.data.message === "User Already Exists") {
+          alert(response.data.message + " Please sign in (;");
+          setInputs({ email: "", username: "", password: "" });
+          history("/signin");
         } else {
           alert(response.data.message);
           setInputs({ email: "", username: "", password: "" });

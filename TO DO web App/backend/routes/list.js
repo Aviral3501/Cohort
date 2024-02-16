@@ -9,8 +9,8 @@ router.post("/addTask" , async (req,res)=>{
   try{
      //check if the user exists , if  not send a 401 unauthorized error and message : "User Not Found!"
     //only add the task if the user exists
-    const {title, description, email} = req.body;
-    const existingUser = await User.findOne({email});
+    const {title, description, id} = req.body;
+    const existingUser = await User.findById(id);
 
     if(!existingUser){
         return res.status(200).json({message:"User not found"});
@@ -87,10 +87,10 @@ router.get("/getTasks/:id" , async (req,res)=>{
         if(list.length ==0){
             return res.status(200).json({message : 'No Todos are available for this user.'});
         }else{
-        res.status(200).json(await list);
+        res.status(200).json(list);
         }
     } catch (error) {
-        console.log("Error in getting the tasks");
+        console.error("Error in getting the tasks",error);
         res.status(200).json({message:"Internal server error"});
     }
 })
