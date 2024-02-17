@@ -7,7 +7,7 @@ const App = () => {
   const [counter, setCounter] = useState(0);
   const [InputValue, setInputValue] = useState(1);
 
-  let count = 0;
+  // let count = 0;
   // for(let i=0;i<=InputValue;i++){
   //   count += i;
   // }
@@ -15,12 +15,13 @@ const App = () => {
   // problem with this is that the expensive operation rerenders even when there is no change 
   // so we can solve this by using useCallback or useMemo
 
-  let coutn = useMemo(() => {
+  let count = useMemo(() => {
     //perform the expensive operation
+    let finalCount=0;
     for (let i = 0; i <= InputValue; i++) {
-      count += i;
+      finalCount += i;
     }
-
+    return finalCount;
   }, [InputValue])
   return (
     <>
