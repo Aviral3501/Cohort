@@ -1,10 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate();
   return (
     <div>
       <b>this here is the  navbar </b>
-      <br/>
+      <button onClick={()=>{navigate("/")}}>Landing</button>
+      <button onClick={()=>{navigate("/dashboard")}}>Dashboard</button>
+      
     </div>
   )
 }
