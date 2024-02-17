@@ -38,3 +38,6 @@ const App = () => {
 }
 
 export default App;
+
+//help is some some extra rerenders  which are not needed
+//its not ggos to use two or useStare variables theat are dependednt in each other
