@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div>
       <b>this here is the  navbar </b>
-      <button onClick={()=>{navigate("/")}}>Landing</button>
+      <button onClick={()=>{navigate("/landing")}}>Landing</button>
       <button onClick={()=>{navigate("/dashboard")}}>Dashboard</button>
       
     </div>
