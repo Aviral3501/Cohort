@@ -1,47 +1,65 @@
-import React, { useContext } from 'react'
-import { useState } from 'react'
-import { CountContext } from './context';
+import React from 'react';
+import {RecoilRoot , useSetRecoilState ,useRecoilValue } from "recoil";
+import { evenMessageSelector, countAtom } from './store/atoms/count';
 
+
+
+let i=0;
 const App = () => {
-  const [count ,setCount]=useState(0);
 
   //wrap anyone that wants to use the teleported value inside a provider
   return (
     <div>
-      <CountContext.Provider value={count}>
-      <Count  setCount={setCount}/>
-      </CountContext.Provider>
-     
+     <RecoilRoot>
+     <Count  />
+     </RecoilRoot>
     </div>
   )
 }
 
-const Count  = ({setCount}) =>{
+const Count  = () =>{
+
   return (
     <>
-    <CountRenderer ></CountRenderer>
-    <Buttons  setCount={setCount}/>
+    <p>{++i}</p>
+    <CountRenderer />
+    <Buttons/>
       
     </>
   )
 }
 
-const CountRenderer =() =>{
-  const count=useContext(CountContext);
+const CountRenderer = () => {
+  const count=useRecoilValue(countAtom);
   return (
     <>
-    {count}
+      <b>
+        {count}
+      </b>
+      
     </>
   )
-} 
-const Buttons = ({setCount}) =>{
-  const count=useContext(CountContext);
+}
+
+const MessageComponent = () => {
+  const evenMessage = useRecoilValue(evenMessageSelector);
+
+  return (
+    <div>
+      <p>{evenMessage}</p>
+    </div>
+  );
+};
+
+const Buttons = () =>{
+  const setCount = useSetRecoilState(countAtom);
   return(
     <>
     <br/>
-    <button onClick={()=>{setCount(count+1)}}>Increase</button>
+    <button onClick={()=>{setCount(count=>count+1)}}>Increase</button>
     <br/>
-    <button onClick={()=>{setCount(count-1)}}>Decrease</button>
+    <button onClick={()=>{setCount(count=>count-2)}}>Decrease</button>
+    <MessageComponent/>
     </>
   )
 
