@@ -1,5 +1,5 @@
-import {RecoilRoot , useRecoilState, useRecoilValue} from "recoil";
-import {jobsAtom, messagingAtom, networkAtom, notificationsAtom} from "./atoms/atoms";
+import {RecoilRoot ,  useRecoilValue} from "recoil";
+import {jobsAtom, messagingAtom, networkAtom, notificationsAtom, totalNotificationsSelector} from "./atoms/atoms";
 
 const App = () => {
   return (
@@ -15,7 +15,8 @@ const MainApp =()=>{
   const networkNotificationsCount = useRecoilValue(networkAtom);
   const jobsAtomCount = useRecoilValue(jobsAtom);
   const notificationsAtomCount = useRecoilValue(notificationsAtom);
-  const [messagingAtomCount , setMessagingAtomCount] = useRecoilState(messagingAtom);
+  const messagingAtomCount  = useRecoilValue(messagingAtom);
+  const totalNotificationsCount = useRecoilValue(totalNotificationsSelector);
 
   return(
     <>
@@ -27,9 +28,7 @@ const MainApp =()=>{
       <button>Messaging ({messagingAtomCount})</button>
       <button>Notifications ({notificationsAtomCount >=100?"99+":notificationsAtomCount})</button>
       
-      <button onClick={()=>{
-        setMessagingAtomCount(messagingAtomCount + 1);
-      }}>Me</button>
+      <button >Me ({totalNotificationsCount})</button>
       
     </div>
     </>
