@@ -1,68 +1,34 @@
-import React from 'react';
-import {RecoilRoot , useSetRecoilState ,useRecoilValue } from "recoil";
-import { evenMessageSelector, countAtom } from './store/atoms/count';
+import React, { useState } from 'react';
 
-
-
-let i=0;
 const App = () => {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-  //wrap anyone that wants to use the teleported value inside a provider
-  return (
-    <div>
-     <RecoilRoot>
-     <Count  />
-     </RecoilRoot>
-    </div>
-  )
-}
-
-const Count  = () =>{
-
-  return (
-    <>
-    <p>{++i}</p>
-    <CountRenderer />
-    <Buttons/>
-      
-    </>
-  )
-}
-
-const CountRenderer = () => {
-  const count=useRecoilValue(countAtom);
-  return (
-    <>
-      <b>
-        {count}
-      </b>
-      
-    </>
-  )
-}
-
-const MessageComponent = () => {
-  const evenMessage = useRecoilValue(evenMessageSelector);
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    console.log('Title:', title);
+    console.log('Body:', body);
+    setBody("");
+    setTitle("");
+  };
 
   return (
     <div>
-      <p>{evenMessage}</p>
+      <input
+        type="text"
+        placeholder="Enter title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Enter body"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+      />
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
 
-const Buttons = () =>{
-  const setCount = useSetRecoilState(countAtom);
-  return(
-    <>
-    <br/>
-    <button onClick={()=>{setCount(count=>count+1)}}>Increase</button>
-    <br/>
-    <button onClick={()=>{setCount(count=>count-2)}}>Decrease</button>
-    <MessageComponent/>
-    </>
-  )
-
-}
-
-export default App
+export default App;
