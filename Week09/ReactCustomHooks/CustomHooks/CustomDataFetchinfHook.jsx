@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
+
+// why useCustom hooks ---> to make your code more cleaner and resusable
+
 function useTodos() {
   const [todos, setTodos] = useState([])
 
@@ -19,7 +22,7 @@ function CustomDataFetching() {
 
   return (
     <>
-      {todos.map(todo => <Track todo={todo} />)}
+      {todos.map(todo => <Track key={todo.title+Math.random()} todo={todo} />)}
     </>
   )
 }

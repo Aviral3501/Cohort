@@ -13,7 +13,7 @@ function DataFetching() {
 
   return (
     <>
-      {todos.map(todo => <Track todo={todo} />)}
+      {todos.map(todo => <Track key={todo.title+Math.random()} todo={todo} />)}
     </>
   )
 }
