@@ -4,11 +4,19 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import FunctionHook from './FunctionHook'
 import ClassBasedHook from './ClassBasedHook'
+import LifeCycleFunction from './LifeCycleFunction'
+import LifeCycleClass from './LifeCycleClass'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <FunctionHook/>
-    <ClassBasedHook/>
+  <>
+ 
+    {/* <FunctionHook/>
+    <ClassBasedHook/> */}
+
+    <div>LIfeccyle here ----  </div>
+    <LifeCycleFunction/>
+    <LifeCycleClass/>
+
+    </>
     
-  </React.StrictMode>,
 )
