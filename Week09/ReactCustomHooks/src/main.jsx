@@ -7,6 +7,7 @@ import './index.css'
 // import LifeCycleClass from './LifeCycleClass'
 import DataFetching from '../CustomHooks/DataFetching'
 import CustomDataFetching from '../CustomHooks/CustomDataFetchinfHook'
+import UseOnlineHook from '../CustomHooks/UseOnlineHook'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
@@ -20,10 +21,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 
-
+{/* 
     <DataFetching/>
     <div>--------------------------------------</div>
-    <CustomDataFetching/>
+    <CustomDataFetching/> */}
+
+    <UseOnlineHook/>
 
 
 
