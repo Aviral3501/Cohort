@@ -14,7 +14,7 @@ export function Signup() {
                 <div>
                     <div className="px-10">
                         <div className="text-3xl font-extrabold">
-                            Sign up
+                            Sign up 
                         </div>
                     </div>
                     <div className="pt-2">
